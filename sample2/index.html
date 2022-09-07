@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Leaflet Sample</title>
+
+    <!-- version1.8 -->
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script> -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <title>Leaflet サンプル: 地理院タイル</title>
+    <style>
+        #map {
+            height: 400px;
+        }
+    </style>
+
+</head>
+
+<body>
+    hello
+    <h1>サンプルコード</h1>
+    <p>HTMLファイルにCSSを読み込んでみましょう</p>
+    <p>国土地理院の地図画像 (<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">地理院タイル</a>) を使用します。</p>
+
+    <div id="map"></div>
+
+
+</body>
+<script>
+
+    var mymap = L.map('map').setView([33.321799788999996, 130.92823436976434], 30);
+    // var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //     maxZoom: 19,
+    //     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    // }).addTo(map);
+    //地理院タイル使う場合
+    L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
+        maxZoom: 22,
+        minZoom: 2,
+        maxNativeZoom: 18,
+        attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">地理院タイル</a>',
+    }).addTo(mymap);
+
+    L.marker([33.321799788999996, 130.92823436976434]).addTo(mymap).bindPopup("テスト");
+    console.log(L.polygon)
+    var polygon = L.polygon([
+        [33.321829043, 130.928211669],
+        [33.321776104, 130.928197857],
+        [33.321781228, 130.928169927],
+        [33.321754001, 130.928162756],
+        [33.321750222, 130.928161794],
+        [33.321734314, 130.928247605],
+        [33.32181835, 130.92826955],
+        [33.321824551, 130.928236151],
+        [33.321829043, 130.928211669],
+    ],
+        {
+            color: 'GREEN',
+            weight: 7,
+            fillOpacity: 0
+        }).addTo(mymap);
+
+
+</script>
+
+</html>
